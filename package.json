@@ -1,0 +1,15 @@
+{
+  "name": "Tracker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A time tracker for billable time",
+  "main": "main.js",
+  "author": "Lee Jones",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^21.1.1"
+  },  
+  "scripts": {
+    "start": "electron ."
+  }
+}
