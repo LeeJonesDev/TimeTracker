@@ -2,6 +2,7 @@
 
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron');
+const isDev = require('electron-is-dev');
 const path = require('path');
 
 const createWindow = () => {
@@ -14,11 +15,25 @@ const createWindow = () => {
     }
   });
 
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html');
+  mainWindow.loadURL(
+    isDev
+      ? 'http://localhost:3000'
+      : `file://${path.join(__dirname, '/time-tracker/build/index.html')}`
+  );
+  // Open the DevTools.
+  if (isDev) {
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
+  }
+
+  // // and load the index.html of the app.
+  // if (isDev) {
+  //   mainWindow.loadFile('/time-tracker/build/index.html');
+  // } else {
+  //   mainWindow.loadFile('/time-tracker/public/index.html');
+  // }
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -26,12 +41,12 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
+});
 
-  app.on('activate', () => {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
-  });
+app.on('activate', () => {
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
