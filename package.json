@@ -1,5 +1,5 @@
 {
-  "name": "Tracker",
+  "name": "tracker",
   "private": true,
   "version": "1.0.0",
   "description": "A time tracker for billable time",
@@ -7,9 +7,16 @@
   "author": "Lee Jones",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^21.1.1"
-  },  
+    "concurrently": "^7.4.0",
+    "electron": "^21.1.1",
+    "wait-on": "^6.0.1"
+  },
   "scripts": {
-    "start": "electron ."
+    "react-start": "yarn --cwd ./time-tracker/ start",
+    "electron-start": "yarn wait-on tcp:3000 && electron .",
+    "dev": "concurrently -k \"BROWSER=none yarn react-start\" \"yarn electron-start\""
+  },
+  "dependencies": {
+    "electron-is-dev": "^2.0.0"
   }
 }
