@@ -1,22 +1,30 @@
 {
-  "name": "tracker",
-  "private": true,
-  "version": "1.0.0",
-  "description": "A time tracker for billable time",
-  "main": "main.js",
-  "author": "Lee Jones",
-  "license": "MIT",
-  "devDependencies": {
-    "concurrently": "^7.4.0",
-    "electron": "^21.1.1",
-    "wait-on": "^6.0.1"
-  },
   "scripts": {
-    "react-start": "yarn --cwd ./time-tracker/ start",
-    "electron-start": "yarn wait-on tcp:3000 && electron .",
-    "dev": "concurrently -k \"BROWSER=none yarn react-start\" \"yarn electron-start\""
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "customize": "yarn expo-electron customize",
+    "desktop": "yarn expo-electron start"
   },
   "dependencies": {
-    "electron-is-dev": "^2.0.0"
-  }
+    "@expo/electron-adapter": "~0.0.55",
+    "@expo/webpack-config": "^0.17.0",
+    "@types/react": "~18.0.0",
+    "@types/react-native": "~0.69.1",
+    "electron": "20.0.0",
+    "expo": "^46.0.0",
+    "expo-linear-gradient": "~11.4.0",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-native": "0.69.4",
+    "react-native-web": "~0.18.7",
+    "typescript": "^4.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6"
+  },
+  "version": "1.0.0",
+  "private": true,
+  "name": "hexpawn-app"
 }
